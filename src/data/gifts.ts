@@ -21,7 +21,7 @@ export const defaultGifts: Gift[] = [
   },
   {
     id: '3',
-    name: 'Классыне часы для классного парня',
+    name: 'Xасы для классного парня',
     description: 'Чуть дешевле, но я буду безумно рад!',
     reserved: false,
     imageUrl: 'https://ir.ozone.ru/s3/multimedia-1-i/wc1000/7096248702.jpg',
