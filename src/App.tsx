@@ -22,12 +22,11 @@ function App() {
           reserved: !gift.reserved,
           reservedBy: !gift.reserved ? name : undefined
         };
-        // Show notification
         setNotification({
           visible: true,
           message: updatedGift.reserved 
-            ? `${updatedGift.name} забронирован(а): ${name}`
-            : `Бронь отменена: ${updatedGift.name}`
+            ? `${updatedGift.name} - ${name}`
+            : `${updatedGift.name} UNLOCKED`
         });
         return updatedGift;
       }
@@ -45,15 +44,8 @@ function App() {
   };
 
   return (
-    <div className="bg-dark min-h-screen flex flex-col relative overflow-hidden">
-      {/* Background grid */}
-      <div className="fixed inset-0 bg-grid-pattern opacity-5 pointer-events-none"></div>
-      
-      {/* Neon lines */}
-      <div className="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 opacity-70"></div>
-      <div className="fixed bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-70"></div>
-      
-      <div className="container mx-auto flex-grow flex flex-col">
+    <div className="min-h-screen bg-retro-overlay flex flex-col relative">
+      <div className="container mx-auto flex-grow flex flex-col px-4">
         <Header />
         <main className="flex-grow">
           <GiftList gifts={gifts} onReserve={handleReserveGift} />

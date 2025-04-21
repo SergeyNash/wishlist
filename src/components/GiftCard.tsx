@@ -29,61 +29,50 @@ const GiftCard: React.FC<GiftCardProps> = ({ gift, onReserve }) => {
   };
 
   return (
-    <div 
-      className={`gift-card relative overflow-hidden border border-purple-500 rounded-md hover:scale-102 transition-transform duration-200 ${
-        gift.reserved ? 'opacity-75' : 'neon-border-purple hover:glitch-effect'
-      }`}
-    >
+    <div className={`gift-card relative overflow-hidden rounded-none ${gift.reserved ? 'reserved-item' : ''}`}>
+      <div className="absolute top-0 right-0 bg-[#e52521] text-white font-pixel text-xs px-2 py-1 z-10">
+        1-UP
+      </div>
       <div className="relative h-48 overflow-hidden">
         <img 
           src={gift.imageUrl} 
           alt={gift.name}
-          className={`w-full h-full object-cover transition-all duration-300 ${
-            gift.reserved ? 'grayscale blur-[1px]' : 'hover:scale-110'
-          }`}
+          className="w-full h-full object-cover transition-all duration-300"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-dark to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
         <a 
           href={gift.storeUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="absolute top-2 right-2 p-2 bg-dark/80 rounded-full border border-cyan-500 text-cyan-400 hover:bg-cyan-900/30 transition-colors neon-border-cyan"
-          title="Открыть в магазине"
+          className="absolute top-2 left-2 p-2 bg-black/80 rounded-none border-2 border-[#ffd700] text-[#ffd700] hover:bg-[#ffd700] hover:text-black transition-colors"
+          title="Open Shop"
         >
           <ExternalLink className="w-4 h-4" />
         </a>
       </div>
       
-      <div className="p-4">
+      <div className="p-4 bg-black/90">
         <div className="flex items-start justify-between mb-3">
           <div className="flex items-start">
-            <GiftIcon className="w-5 h-5 text-green-400 mr-2 glow-text-green" />
-            <h3 
-              className={`text-xl font-pixel-secondary text-pink-500 glow-text-pink ${
-                gift.reserved ? 'line-through' : ''
-              }`}
-            >
+            <div className="pixel-coin mr-2"></div>
+            <h3 className={`text-xl font-pixel text-[#ffd700] ${gift.reserved ? 'line-through' : ''}`}>
               {gift.name}
             </h3>
           </div>
-          <span className="text-cyan-400 font-pixel-secondary glow-text-cyan">
+          <span className="text-[#ff6b1a] font-pixel">
             {gift.price}
           </span>
         </div>
         
-        <p 
-          className={`mb-4 text-sm text-gray-300 ${
-            gift.reserved ? 'line-through' : ''
-          }`}
-        >
+        <p className={`mb-4 text-sm font-pixel text-[#1a9c1a] ${gift.reserved ? 'line-through' : ''}`}>
           {gift.description}
         </p>
 
         {gift.reservedBy && (
-          <div className="flex items-center mb-4 px-3 py-2 bg-purple-900/20 rounded border border-purple-500/30">
-            <UserCircle className="w-4 h-4 text-purple-400 mr-2" />
-            <p className="text-sm text-purple-300">
-              Забронировал(а): <span className="text-purple-200 font-semibold">{gift.reservedBy}</span>
+          <div className="flex items-center mb-4 px-3 py-2 bg-[#1a9c1a]/20 border-2 border-[#1a9c1a]">
+            <UserCircle className="w-4 h-4 text-[#1a9c1a] mr-2" />
+            <p className="text-sm font-pixel text-[#1a9c1a]">
+              PLAYER: <span className="text-[#ffd700]">{gift.reservedBy}</span>
             </p>
           </div>
         )}
@@ -94,36 +83,33 @@ const GiftCard: React.FC<GiftCardProps> = ({ gift, onReserve }) => {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Введите ваше имя"
-              className="w-full px-3 py-2 mb-2 bg-dark border border-green-500 rounded text-green-400 placeholder-green-700 font-pixel-secondary focus:outline-none focus:border-green-400 neon-border-green"
+              placeholder="ENTER YOUR NAME"
+              className="retro-input w-full mb-2 font-pixel text-sm"
               autoFocus
+              maxLength={20}
             />
             <div className="flex gap-2">
               <button
                 type="submit"
-                className="flex-1 py-2 px-4 border border-green-500 bg-transparent text-sm font-pixel text-green-400 hover:bg-green-900/30 neon-border-green neon-flicker-slow glow-text-green"
+                className="retro-btn retro-btn-green flex-1 font-pixel text-sm"
               >
-                OK
+                START
               </button>
               <button
                 type="button"
                 onClick={() => setIsNameInputVisible(false)}
-                className="flex-1 py-2 px-4 border border-red-500 bg-transparent text-sm font-pixel text-red-400 hover:bg-red-900/30 neon-border-red glow-text-red"
+                className="retro-btn retro-btn-red flex-1 font-pixel text-sm"
               >
-                ОТМЕНА
+                BACK
               </button>
             </div>
           </form>
         ) : (
           <button
             onClick={handleReserveClick}
-            className={`w-full py-2 px-4 border bg-transparent text-sm font-pixel transition-all duration-300 ${
-              gift.reserved
-                ? 'border-red-500 text-red-400 hover:bg-red-900/30 neon-border-red glow-text-red'
-                : 'border-green-500 text-green-400 hover:bg-green-900/30 neon-border-green neon-flicker-slow glow-text-green'
-            }`}
+            className={`retro-btn w-full font-pixel text-sm ${gift.reserved ? 'retro-btn-red' : 'retro-btn-green'}`}
           >
-            {gift.reserved ? 'ОТМЕНИТЬ БРОНЬ' : 'ЗАБРОНИРОВАТЬ'}
+            {gift.reserved ? 'GAME OVER' : 'PRESS START'}
           </button>
         )}
       </div>

@@ -1,19 +1,27 @@
 import React from 'react';
-import { MegaphoneIcon } from 'lucide-react';
+import { Gamepad2 } from 'lucide-react';
 
 const Header: React.FC = () => {
   return (
-    <header className="text-center py-8 md:py-12">
+    <header className="text-center py-8 md:py-12 relative">
+      <div className="absolute top-0 left-0 w-full h-2 bg-[#e52521]"></div>
       <div className="relative inline-block">
-        <h1 className="text-3xl md:text-5xl lg:text-6xl font-pixel text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-600 to-pink-500 neon-flicker drop-shadow-glow mb-2">
-          <MegaphoneIcon className="inline-block w-8 h-8 mr-2 mb-1 animate-pulse" />
-          МОЙ ДР 2025
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-pixel text-[#ffd700] mb-2 drop-shadow-[0_2px_0_#000]">
+          <Gamepad2 className="inline-block w-8 h-8 mr-2 mb-1 animate-bounce" />
+          SUPER BIRTHDAY 2025
         </h1>
-        <div className="absolute inset-0 bg-gradient-to-r from-pink-500 via-purple-600 to-pink-500 opacity-50 blur-md -z-10"></div>
       </div>
-      <p className="text-lg md:text-xl font-pixel-secondary text-cyan-400 mt-4 glow-text-cyan drop-shadow-glow-sm">
-        Выбери и заблокируй подарок
+      <p className="text-lg md:text-xl font-pixel text-[#1a9c1a] mt-4 drop-shadow-[0_2px_0_#000]">
+        PRESS START TO SELECT A GIFT
       </p>
+      <div className="mt-6 flex justify-center items-center gap-4">
+        <div className="pixel-coin"></div>
+        <span className="font-pixel text-[#ff6b1a] text-sm">×</span>
+        <span className="font-pixel text-[#ffd700] text-lg">30</span>
+      </div>
+      <div className="mt-4 font-pixel text-xs text-[#1a9c1a]">
+        PLAYER 1 - READY!
+      </div>
     </header>
   );
 };

@@ -9,6 +9,7 @@ export default {
         'neon-green': '#00FF00',
         'neon-blue': '#00FFFF',
         'neon-purple': '#9400D3',
+        'retro-bg': '#1a1a2e',
       },
       scale: {
         '102': '1.02',

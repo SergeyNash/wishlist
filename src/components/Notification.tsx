@@ -20,14 +20,15 @@ const Notification: React.FC<NotificationProps> = ({ notification, onClose }) =>
   if (!notification.visible) return null;
 
   return (
-    <div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 animate-bounce-in">
-      <div className="px-6 py-3 bg-black border-2 border-green-500 text-green-400 font-pixel neon-border-green">
-        <p className="text-sm">
-          ТЫ ВЫБРАЛ: {notification.message}
+    <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50 animate-slide-down">
+      <div className="px-6 py-3 bg-black border-4 border-[#ffd700] text-[#ffd700] font-pixel">
+        <p className="text-sm flex items-center gap-2">
+          <span className="text-[#e52521]">★</span>
+          WORLD 1-1: {notification.message}
         </p>
       </div>
     </div>
   );
-};
+}
 
 export default Notification;
