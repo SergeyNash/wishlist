@@ -8,11 +8,11 @@ const Header: React.FC = () => {
       <div className="relative inline-block">
         <h1 className="text-3xl md:text-5xl lg:text-6xl font-pixel text-[#ffd700] mb-2 drop-shadow-[0_2px_0_#000]">
           <Gamepad2 className="inline-block w-8 h-8 mr-2 mb-1 animate-bounce" />
-          SUPER BIRTHDAY 2025
+          ДЕНЬ РОЖДЕНИЯ 2025
         </h1>
       </div>
       <p className="text-lg md:text-xl font-pixel text-[#1a9c1a] mt-4 drop-shadow-[0_2px_0_#000]">
-        PRESS START TO SELECT A GIFT
+        ЧТОБЫ НАЧАТЬ ВЫБЕРИТЕ ПОДАРОК
       </p>
       <div className="mt-6 flex justify-center items-center gap-4">
         <div className="pixel-coin"></div>
