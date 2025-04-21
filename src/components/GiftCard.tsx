@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Gift } from '../types';
-import { GiftIcon, UserCircle, ExternalLink } from 'lucide-react';
+import { GiftIcon, UserCircle, ExternalLink, Lock } from 'lucide-react';
 
 interface GiftCardProps {
   gift: Gift;
@@ -9,11 +9,14 @@ interface GiftCardProps {
 
 const GiftCard: React.FC<GiftCardProps> = ({ gift, onReserve }) => {
   const [isNameInputVisible, setIsNameInputVisible] = useState(false);
+  const [isPasswordInputVisible, setIsPasswordInputVisible] = useState(false);
   const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const handleReserveClick = () => {
     if (gift.reserved) {
-      onReserve(gift.id);
+      setIsPasswordInputVisible(true);
       return;
     }
     setIsNameInputVisible(true);
@@ -25,6 +28,19 @@ const GiftCard: React.FC<GiftCardProps> = ({ gift, onReserve }) => {
       onReserve(gift.id, name.trim());
       setName('');
       setIsNameInputVisible(false);
+    }
+  };
+
+  const handlePasswordSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === 'sad-sereja') {
+      onReserve(gift.id);
+      setPassword('');
+      setIsPasswordInputVisible(false);
+      setError('');
+    } else {
+      setError('WRONG PASSWORD!');
+      setPassword('');
     }
   };
 
@@ -99,6 +115,42 @@ const GiftCard: React.FC<GiftCardProps> = ({ gift, onReserve }) => {
                 type="button"
                 onClick={() => setIsNameInputVisible(false)}
                 className="retro-btn retro-btn-red flex-1 font-pixel text-sm"
+              >
+                BACK
+              </button>
+            </div>
+          </form>
+        ) : isPasswordInputVisible ? (
+          <form onSubmit={handlePasswordSubmit} className="mb-4">
+            <div className="flex items-center mb-2">
+              <Lock className="w-4 h-4 text-[#ffd700] mr-2" />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="ENTER PASSWORD"
+                className="retro-input w-full font-pixel text-sm"
+                autoFocus
+              />
+            </div>
+            {error && (
+              <p className="text-[#e52521] text-sm font-pixel mb-2">{error}</p>
+            )}
+            <div className="flex gap-2">
+              <button
+                type="submit"
+                className="retro-btn retro-btn-red flex-1 font-pixel text-sm"
+              >
+                UNLOCK
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setIsPasswordInputVisible(false);
+                  setError('');
+                  setPassword('');
+                }}
+                className="retro-btn flex-1 font-pixel text-sm"
               >
                 BACK
               </button>
